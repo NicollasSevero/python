@@ -144,4 +144,8 @@ class SistemaEscola:
 if __name__ == "__main__":
     root = tk.Tk()
     app = SistemaEscola(root)
+<<<<<<< HEAD
     root.mainloop()
+=======
+    root.mainloop()
+>>>>>>> b2252b4b974d2b36f7e69c4ece2d4d416e668229
