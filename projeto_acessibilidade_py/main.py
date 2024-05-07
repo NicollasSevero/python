@@ -1,29 +1,39 @@
 import cv2
+import mediapipe as mp
 
-# Carrega o vídeo
-video_path = 'caminho_para_seu_video.mp4'
-cap = cv2.VideoCapture(video_path)
+mp_drawing = mp.solutions.drawing_utils
+mp_hands = mp.solutions.hands
 
-# Verifica se o vídeo foi aberto corretamente
-if not cap.isOpened():
-    print("Erro ao abrir o vídeo")
-    exit()
+# Inicializar a webcam
+cap = cv2.VideoCapture(0)
 
-# Loop para ler e exibir cada quadro do vídeo
-while True:
-    ret, frame = cap.read()
+# Inicializar o modelo de detecção de mãos
+with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands:
+    while cap.isOpened():
+        # Ler o frame da webcam
+        ret, frame = cap.read()
+        if not ret:
+            print("Erro ao capturar o frame da câmera.")
+            break
 
-    # Verifica se chegou ao fim do vídeo
-    if not ret:
-        break
+        # Converter o frame para RGB
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    # Mostra o quadro do vídeo
-    cv2.imshow('Video', frame)
+        # Detectar mãos no frame
+        results = hands.process(frame_rgb)
 
-    # Pressione 'q' para sair do loop
-    if cv2.waitKey(25) & 0xFF == ord('q'):
-        break
+        # Desenhar as mãos no frame
+        if results.multi_hand_landmarks:
+            for hand_landmarks in results.multi_hand_landmarks:
+                mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
-# Libera os recursos
+        # Mostrar o frame com as mãos detectadas
+        cv2.imshow('MediaPipe Hands', frame)
+
+        # Pressione 'q' para sair do loop
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+# Liberar recursos
 cap.release()
 cv2.destroyAllWindows()
