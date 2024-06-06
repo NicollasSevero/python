@@ -26,10 +26,10 @@ class VoiceTranslatorApp:
         
         self.recognizer = sr.Recognizer()
         self.vocabulary = {
-            "nosso projeto tem um valor": "Projeto/Scripts/Tradutor_de_voz/Arquivos_Gifs/1 Nosso.gif",
-            "a solução proposta traduz a": "Projeto/Scripts/Tradutor_de_voz/Arquivos_Gifs/2 A solução.gif",
-            "ao aplicar o reconhecimento de": "Projeto/Scripts/Tradutor_de_voz/Arquivos_Gifs/3 Ao aplicar.gif",
-            "facilitando a comunicação em diversos": "Projeto/Scripts/Tradutor_de_voz/Arquivos_Gifs/4 Além disso.gif",
+            "nosso projeto tem um valor": "projeto_acessibilidade_py\1 Nosso.gif",
+            "a solução proposta traduz a": "projeto_acessibilidade_py\2 A solução.gif",
+            "ao aplicar o reconhecimento de": "projeto_acessibilidade_py\3 Ao aplicar.gif",
+            "facilitando a comunicação em diversos": "projeto_acessibilidade_py\4 Além disso.gif",
         }
 
     def match_initial_words(self, text):
