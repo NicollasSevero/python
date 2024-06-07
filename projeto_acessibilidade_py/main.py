@@ -26,16 +26,18 @@ class VoiceTranslatorApp:
         
         self.recognizer = sr.Recognizer()
         self.vocabulary = {
-            "nosso projeto tem um valor": "projeto_acessibilidade_py\1 Nosso.gif",
-            "a solução proposta traduz a": "projeto_acessibilidade_py\2 A solução.gif",
-            "ao aplicar o reconhecimento de": "projeto_acessibilidade_py\3 Ao aplicar.gif",
-            "facilitando a comunicação em diversos": "projeto_acessibilidade_py\4 Além disso.gif",
+            "boa noite meus caros colegas": "projeto_acessibilidade_py/1 Nosso.gif",
+            "a solução proposta traduz a": "projeto_acessibilidade_py/2 A solução.gif",
+            "ao aplicar o reconhecimento de": "projeto_acessibilidade_py/3 Ao aplicar.gif",
+            "facilitando a comunicação em diversos": "projeto_acessibilidade_py/4 Além disso.gif",
+            "carro":"projeto_acessibilidade_py\carro.gif",
+            "digital":"projeto_acessibilidade_py\digital.gif",
         }
 
     def match_initial_words(self, text):
         words = text.lower().split()
-        if len(words) >= 5:
-            initial_words = ' '.join(words[:5])
+        if len(words) >= 1:#alterado a quantidadde de palavras chaves
+            initial_words = ' '.join(words[:1])#alterado a quantidade de palavras chaves
             for key in self.vocabulary.keys():
                 if initial_words in key:
                     return self.vocabulary[key]
